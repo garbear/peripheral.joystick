@@ -275,15 +275,16 @@ bool CJoystickUdev::GetProperties()
   }
   SetName(name);
 
-  // Don't worry about unref'ing the parent
-  struct udev_device* parent = udev_device_get_parent_with_subsystem_devtype(m_dev, "usb", "usb_device");
-
-  const char* buf;
-  if ((buf = udev_device_get_sysattr_value(parent, "idVendor")) != nullptr)
-    SetVendorID(strtol(buf, NULL, 16));
-
-  if ((buf = udev_device_get_sysattr_value(parent, "idProduct")) != nullptr)
-    SetProductID(strtol(buf, NULL, 16));
+  unsigned short id[4];
+  char val[16];
+  if(ioctl(m_fd, EVIOCGID, id) == 0) {
+    sprintf(val, "%x", id[ID_VENDOR]);
+    SetVendorID(strtol(val, NULL, 16));
+    esyslog("joystick information vendorid=%s for %s", val, m_path.c_str());
+    sprintf(val, "%x", id[ID_PRODUCT]);
+    SetProductID(strtol(val, NULL, 16));
+    esyslog("joystick information productid=%s for %s", val, m_path.c_str());
+  }
 
   struct stat st;
   if (fstat(m_fd, &st) < 0)
