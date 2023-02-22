@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="usb gamepad           " provider="linux" buttoncount="10" axiscount="2">
+        <configuration />
         <controller id="game.controller.snes">
             <feature name="a" button="1" />
             <feature name="b" button="2" />
