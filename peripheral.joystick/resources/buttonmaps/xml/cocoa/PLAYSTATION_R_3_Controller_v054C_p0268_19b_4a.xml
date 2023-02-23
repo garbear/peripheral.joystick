@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="PLAYSTATION(R)3 Controller" provider="cocoa" vid="054C" pid="0268" buttoncount="19" axiscount="4">
+        <configuration>
+            <appearance id="game.controller.ps.dualanalog" />
+        </configuration>
         <controller id="game.controller.default">
             <feature name="a" button="14" />
             <feature name="b" button="13" />

@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Bluetooth HID Port" provider="directinput" vid="05A0" pid="3232" buttoncount="16" hatcount="1" axiscount="6">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
         <controller id="game.controller.snes">
             <feature name="a" button="0" />
             <feature name="b" button="1" />

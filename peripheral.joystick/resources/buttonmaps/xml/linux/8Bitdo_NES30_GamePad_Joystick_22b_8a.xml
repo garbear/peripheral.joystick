@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="8Bitdo NES30 GamePad Joystick" provider="linux" buttoncount="22" axiscount="8">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
         <controller id="game.controller.snes">
             <feature name="a" button="0" />
             <feature name="b" button="1" />

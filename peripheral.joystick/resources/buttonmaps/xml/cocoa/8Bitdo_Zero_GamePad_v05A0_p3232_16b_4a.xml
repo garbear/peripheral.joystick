@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="8Bitdo Zero GamePad" provider="cocoa" vid="05A0" pid="3232" buttoncount="16" axiscount="4">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
         <controller id="game.controller.snes">
             <feature name="a" button="0" />
             <feature name="b" button="1" />

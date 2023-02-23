@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Xbox 360 Wireless Receiver" provider="linux" buttoncount="15" axiscount="8">
+        <configuration>
+            <appearance id="game.controller.default" />
+        </configuration>
         <controller id="game.controller.default">
             <feature name="a" button="0" />
             <feature name="b" button="1" />

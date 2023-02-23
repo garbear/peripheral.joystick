@@ -2,6 +2,7 @@
 <buttonmap>
     <device name="Xbox One Wired Controller" provider="cocoa" vid="045E" pid="02DD" buttoncount="15" axiscount="6">
         <configuration>
+            <appearance id="game.controller.default" />
             <axis index="4" center="-1" range="2" />
             <axis index="5" center="-1" range="2" />
         </configuration>

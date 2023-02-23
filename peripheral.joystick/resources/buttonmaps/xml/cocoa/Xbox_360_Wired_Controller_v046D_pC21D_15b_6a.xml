@@ -2,6 +2,7 @@
 <buttonmap>
     <device name="Xbox 360 Wired Controller" provider="cocoa" vid="046D" pid="C21D" buttoncount="15" axiscount="6">
         <configuration>
+            <appearance id="game.controller.default" />
             <axis index="4" center="-1" range="2" />
             <axis index="5" center="-1" range="2" />
         </configuration>

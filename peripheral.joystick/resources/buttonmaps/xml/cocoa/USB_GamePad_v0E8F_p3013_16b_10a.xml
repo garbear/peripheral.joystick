@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="USB GamePad" provider="cocoa" vid="0E8F" pid="3013" buttoncount="16" axiscount="10">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
         <controller id="game.controller.snes">
             <feature name="a" button="1" />
             <feature name="b" button="2" />

@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Wish Technologies Adaptoid" provider="linux" buttoncount="14" axiscount="2">
+        <configuration>
+            <appearance id="game.controller.n64" />
+        </configuration>
         <controller id="game.controller.n64">
             <feature name="a" button="0" />
             <feature name="analogstick">

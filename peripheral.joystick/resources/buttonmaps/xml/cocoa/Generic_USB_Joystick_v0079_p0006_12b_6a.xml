@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Generic   USB  Joystick" provider="cocoa" vid="0079" pid="0006" buttoncount="12" axiscount="6">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.n64" />
+        </configuration>
         <controller id="game.controller.n64">
             <feature name="a" button="6" />
             <feature name="analogstick">
