@@ -20,6 +20,8 @@ namespace JOYSTICK
     virtual ~CDatabaseJoystickAPI(void) { }
 
     // implementation of IDatabase
+    virtual bool GetAppearance(const kodi::addon::Joystick& driverInfo, std::string& controllerId) override;
+    virtual bool SetAppearance(const kodi::addon::Joystick& driverInfo, const std::string& controllerId) override;
     virtual const ButtonMap& GetButtonMap(const kodi::addon::Joystick& driverInfo) override;
     virtual bool MapFeatures(const kodi::addon::Joystick& driverInfo, const std::string& controllerId, const FeatureVector& features) override;
     virtual bool GetIgnoredPrimitives(const kodi::addon::Joystick& driverInfo, PrimitiveVector& primitives) override;

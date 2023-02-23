@@ -10,6 +10,8 @@
 
 #include "storage/StorageTypes.h"
 
+#include <string>
+
 class TiXmlElement;
 
 namespace JOYSTICK
@@ -28,6 +30,9 @@ namespace JOYSTICK
 
     static bool SerializeConfig(const CDeviceConfiguration& config, TiXmlElement* pElement);
     static bool DeserializeConfig(const TiXmlElement* pElement, CDeviceConfiguration& config);
+
+    static bool SerializeAppearance(const std::string& controllerId, TiXmlElement* pElement);
+    static bool DeserializeAppearance(const TiXmlElement* pElement, std::string& controllerId);
 
     static bool SerializeAxis(unsigned int index, const AxisConfiguration& axisConfig, TiXmlElement* pElement);
     static bool DeserializeAxis(const TiXmlElement* pElement, unsigned int& index, AxisConfiguration& axisConfig);

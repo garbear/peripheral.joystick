@@ -12,6 +12,16 @@
 
 using namespace JOYSTICK;
 
+bool CDatabaseJoystickAPI::GetAppearance(const kodi::addon::Joystick& driverInfo, std::string& controllerId)
+{
+  return false;
+}
+
+bool CDatabaseJoystickAPI::SetAppearance(const kodi::addon::Joystick& driverInfo, const std::string& controllerId)
+{
+  return false;
+}
+
 const ButtonMap& CDatabaseJoystickAPI::GetButtonMap(const kodi::addon::Joystick& driverInfo)
 {
   return CJoystickManager::Get().GetButtonMap(driverInfo.Provider());

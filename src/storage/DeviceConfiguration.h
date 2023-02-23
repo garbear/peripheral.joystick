@@ -13,6 +13,7 @@
 #include "buttonmapper/ButtonMapTypes.h"
 
 #include <map>
+#include <string>
 
 namespace JOYSTICK
 {
@@ -28,6 +29,7 @@ namespace JOYSTICK
 
     bool IsEmpty() const;
 
+    const std::string& GetAppearance(void) const { return m_appearance; }
           AxisConfigurationMap&   Axes(void)                       { return m_axes; }
     const AxisConfigurationMap&   Axes(void) const                 { return m_axes; }
     const AxisConfiguration&      Axis(unsigned int index) const;
@@ -38,6 +40,7 @@ namespace JOYSTICK
     void                          GetAxisConfigs(FeatureVector& features) const;
     void                          GetAxisConfig(kodi::addon::DriverPrimitive& primitive) const;
 
+    void SetAppearance(const std::string& controllerId) { m_appearance = controllerId; }
     void SetAxis(unsigned int index, const AxisConfiguration& config)     { m_axes[index] = config; }
     void SetButton(unsigned int index, const ButtonConfiguration& config) { m_buttons[index] = config; }
     void SetAxisConfigs(const FeatureVector& features);
@@ -46,6 +49,7 @@ namespace JOYSTICK
 
   private:
     // Configuration parameters
+    std::string m_appearance;
     AxisConfigurationMap m_axes;
     ButtonConfigurationMap m_buttons;
   };

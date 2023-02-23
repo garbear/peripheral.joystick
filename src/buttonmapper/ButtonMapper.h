@@ -42,12 +42,12 @@ namespace JOYSTICK
     IDatabaseCallbacks* GetCallbacks();
 
     bool GetFeatures(const kodi::addon::Joystick& joystick, const std::string& strDeviceId, FeatureVector& features);
+    ButtonMap GetButtonMap(const kodi::addon::Joystick& joystick) const;
 
     void RegisterDatabase(const DatabasePtr& database);
     void UnregisterDatabase(const DatabasePtr& database);
 
   private:
-    ButtonMap GetButtonMap(const kodi::addon::Joystick& joystick) const;
     static void MergeButtonMap(ButtonMap& accumulatedMap, const ButtonMap& newFeatures);
     static void MergeFeatures(FeatureVector& features, const FeatureVector& newFeatures);
     bool GetFeatures(const kodi::addon::Joystick& joystick, ButtonMap buttonMap, const std::string& controllerId, FeatureVector& features);

@@ -96,3 +96,8 @@ void CDirectoryCache::UpdateDirectory(const std::string& path, const std::vector
   timestamp = std::chrono::steady_clock::now();
   cachedItems = items;
 }
+
+void CDirectoryCache::ClearCache()
+{
+  m_cache.clear();
+}

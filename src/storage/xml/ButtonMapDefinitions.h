@@ -11,6 +11,7 @@
 #define BUTTONMAP_XML_ROOT                     "buttonmap"
 #define BUTTONMAP_XML_ELEM_DEVICE              "device"
 #define BUTTONMAP_XML_ELEM_CONFIGURATION       "configuration"
+#define BUTTONMAP_XML_ELEM_APPEARANCE          "appearance"
 #define BUTTONMAP_XML_ELEM_AXIS                "axis"
 #define BUTTONMAP_XML_ELEM_BUTTON              "button"
 #define BUTTONMAP_XML_ELEM_CONTROLLER          "controller"

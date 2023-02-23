@@ -78,6 +78,32 @@ namespace JOYSTICK
     void Deinitialize(void);
 
     /*!
+     * \brief Get the controller profile that best represents the device
+     *
+     * \param joystick The device's joystick properties; unknown values may be
+     *                 left at their default
+     * \param controllerId The controller profile, e.g. game.controller.default,
+     *                     or unmodified if false is returned
+     *
+     * \return True if the controller ID was loaded from a storage backend,
+     * false on error
+     */
+    bool GetAppearance(const kodi::addon::Joystick& joystick, std::string& controllerId);
+
+    /*!
+     * \brief Set the controller profile that best represents the device
+     *
+     * \param joystick The device's joystick properties; unknown values may be
+     *                 left at their default
+     * \param controllerId The controller profile, e.g. game.controller.default,
+     *                     or empty to unset the appearance
+     *
+     * \return True if the controller ID was loaded from a storage backend,
+     * false on error
+     */
+    bool SetAppearance(const kodi::addon::Joystick& joystick, const std::string& controllerId);
+
+    /*!
      * \brief Get the map of features to driver primitives from a storage backend
      *
      * \param joystick      The device's joystick properties; unknown values may be left at their default

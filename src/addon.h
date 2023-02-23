@@ -33,6 +33,8 @@ public:
   PERIPHERAL_ERROR GetEvents(std::vector<kodi::addon::PeripheralEvent>& events) override;
   bool SendEvent(const kodi::addon::PeripheralEvent& event) override;
   PERIPHERAL_ERROR GetJoystickInfo(unsigned int index, kodi::addon::Joystick& info) override;
+  PERIPHERAL_ERROR GetAppearance(const kodi::addon::Joystick& joystick, std::string& controllerId) override;
+  PERIPHERAL_ERROR SetAppearance(const kodi::addon::Joystick& joystick, const std::string& controllerId) override;
   PERIPHERAL_ERROR GetFeatures(const kodi::addon::Joystick& joystick,
                                const std::string& controller_id,
                                std::vector<kodi::addon::JoystickFeature>& features) override;
