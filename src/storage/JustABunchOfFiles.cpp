@@ -28,8 +28,6 @@ CResources::CResources(const CJustABunchOfFiles* database) :
 
 CResources::~CResources(void)
 {
-  for (ResourceMap::iterator it = m_resources.begin(); it != m_resources.end(); ++it)
-    delete it->second;
 }
 
 DevicePtr CResources::GetDevice(const CDevice& deviceInfo) const
@@ -96,6 +94,38 @@ void CResources::RemoveResource(const std::string& strPath)
       break;
     }
   }
+}
+
+bool CResources::GetAppearance(const CDevice& deviceInfo, std::string& controllerId) const
+{
+  DevicePtr device = GetDevice(deviceInfo);
+  if (device && !device->Configuration().GetAppearance().empty())
+  {
+    controllerId = device->Configuration().GetAppearance();
+    return true;
+  }
+
+  return false;
+}
+
+bool CResources::SetAppearance(const CDevice& deviceInfo, const std::string& controllerId)
+{
+  auto itDevice = m_devices.find(deviceInfo);
+
+  // Ensure resource exists
+  if (itDevice == m_devices.end())
+  {
+    GetResource(deviceInfo, true);
+    itDevice = m_devices.find(deviceInfo);
+  }
+
+  if (itDevice != m_devices.end())
+  {
+    itDevice->second->Configuration().SetAppearance(controllerId);
+    return true;
+  }
+
+  return false;
 }
 
 bool CResources::GetIgnoredPrimitives(const CDevice& deviceInfo, PrimitiveVector& primitives) const
@@ -169,6 +199,29 @@ CJustABunchOfFiles::CJustABunchOfFiles(const std::string& strResourcePath,
 CJustABunchOfFiles::~CJustABunchOfFiles(void)
 {
   m_directoryCache.Deinitialize();
+}
+
+bool CJustABunchOfFiles::GetAppearance(const kodi::addon::Joystick& driverInfo, std::string& controllerId)
+{
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
+
+  // Update index
+  IndexDirectory(m_strResourcePath, FOLDER_DEPTH);
+
+  return m_resources.GetAppearance(driverInfo, controllerId);
+}
+
+bool CJustABunchOfFiles::SetAppearance(const kodi::addon::Joystick& driverInfo, const std::string& controllerId)
+{
+  if (!m_bReadWrite)
+    return false;
+
+  std::lock_guard<std::recursive_mutex> lock(m_mutex);
+
+  if (!m_resources.SetAppearance(driverInfo, controllerId))
+    return false;
+
+  return true;
 }
 
 const ButtonMap& CJustABunchOfFiles::GetButtonMap(const kodi::addon::Joystick& driverInfo)

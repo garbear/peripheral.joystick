@@ -38,6 +38,8 @@ namespace JOYSTICK
     bool GetDirectory(const std::string& path, std::vector<kodi::vfs::CDirEntry>& items);
     void UpdateDirectory(const std::string& path, const std::vector<kodi::vfs::CDirEntry>& items);
 
+    void ClearCache();
+
   private:
     IDirectoryCacheCallback* m_callbacks;
 

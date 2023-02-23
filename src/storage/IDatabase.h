@@ -43,6 +43,16 @@ namespace JOYSTICK
     virtual ~IDatabase(void) { }
 
     /*!
+     * \copydoc CStorageManager::GetAppearance()
+     */
+    virtual bool GetAppearance(const kodi::addon::Joystick& driverInfo, std::string& controllerId) = 0;
+
+    /*!
+     * \copydoc CStorageManager::SetAppearance()
+     */
+    virtual bool SetAppearance(const kodi::addon::Joystick& driverInfo, const std::string& controllerId) = 0;
+
+    /*!
      * \copydoc CStorageManager::GetFeatures()
      */
     virtual const ButtonMap& GetButtonMap(const kodi::addon::Joystick& driverInfo) = 0;

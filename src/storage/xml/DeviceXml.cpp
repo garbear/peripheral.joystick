@@ -114,6 +114,10 @@ bool CDeviceXml::SerializeConfig(const CDeviceConfiguration& config, TiXmlElemen
     if (configurationElem == nullptr)
       return false;
 
+    const std::string controllerId = config.GetAppearance();
+    if (!SerializeAppearance(controllerId, configurationElem))
+      return false;
+
     for (const auto& axis : config.Axes())
     {
       if (!SerializeAxis(axis.first, axis.second, configurationElem))
@@ -136,6 +140,17 @@ bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfigur
 
   if (pDevice)
   {
+    const TiXmlElement* pAppearance = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+
+    if (pAppearance != nullptr)
+    {
+      std::string controllerId;
+      if (!DeserializeAppearance(pDevice, controllerId))
+        return false;
+
+      config.SetAppearance(controllerId);
+    }
+
     const TiXmlElement* pAxis = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_AXIS);
 
     for ( ; pAxis != nullptr; pAxis = pAxis->NextSiblingElement(BUTTONMAP_XML_ELEM_AXIS))
@@ -159,6 +174,43 @@ bool CDeviceXml::DeserializeConfig(const TiXmlElement* pElement, CDeviceConfigur
 
       config.SetButton(buttonIndex, buttonConfig);
     }
+  }
+
+  return true;
+}
+
+bool CDeviceXml::SerializeAppearance(const std::string& controllerId, TiXmlElement* pElement)
+{
+  if (!controllerId.empty())
+  {
+    TiXmlElement appearanceElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+    TiXmlNode* appearanceNode = pElement->InsertEndChild(appearanceElement);
+    if (appearanceNode == nullptr)
+      return false;
+
+    TiXmlElement* appearanceElem = appearanceNode->ToElement();
+    if (appearanceElem == nullptr)
+      return false;
+
+    appearanceElem->SetAttribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID, controllerId);
+  }
+
+  return true;
+}
+
+bool CDeviceXml::DeserializeAppearance(const TiXmlElement* pElement, std::string& controllerId)
+{
+  const TiXmlElement* pAppearance = pElement->FirstChildElement(BUTTONMAP_XML_ELEM_APPEARANCE);
+
+  if (pAppearance != nullptr)
+  {
+    const char* controllerIdStr = pAppearance->Attribute(BUTTONMAP_XML_ATTR_CONTROLLER_ID);
+    if (controllerIdStr == nullptr)
+    {
+      esyslog("<%s> tag has no \"%s\" attribute", BUTTONMAP_XML_ELEM_APPEARANCE, BUTTONMAP_XML_ATTR_CONTROLLER_ID);
+      return false;
+    }
+    controllerId = controllerIdStr;
   }
 
   return true;

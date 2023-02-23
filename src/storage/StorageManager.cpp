@@ -98,6 +98,35 @@ void CStorageManager::Deinitialize(void)
   m_peripheralLib = nullptr;
 }
 
+bool CStorageManager::GetAppearance(const kodi::addon::Joystick& joystick, std::string& controllerId)
+{
+  for (DatabaseVector::const_iterator it = m_databases.begin(); it != m_databases.end(); ++it)
+  {
+    if ((*it)->GetAppearance(joystick, controllerId))
+      return true;
+  }
+
+  // Fall back to deducing controller profile based on mapping
+  ButtonMap buttonMap = m_buttonMapper->GetButtonMap(joystick);
+  if (buttonMap.size() == 1)
+  {
+     controllerId = buttonMap.begin()->first;
+     return true;
+  }
+
+  return false;
+}
+
+bool CStorageManager::SetAppearance(const kodi::addon::Joystick& joystick, const std::string& controllerId)
+{
+  bool bSuccess = false;
+
+  for (DatabaseVector::const_iterator it = m_databases.begin(); it != m_databases.end(); ++it)
+    bSuccess |= (*it)->SetAppearance(joystick, controllerId);
+
+  return bSuccess;
+}
+
 void CStorageManager::GetFeatures(const kodi::addon::Joystick& joystick,
                                   const std::string& strControllerId,
                                   FeatureVector& features)

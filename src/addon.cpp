@@ -111,6 +111,22 @@ PERIPHERAL_ERROR CPeripheralJoystick::GetJoystickInfo(unsigned int index, kodi::
   return PERIPHERAL_NO_ERROR;
 }
 
+PERIPHERAL_ERROR CPeripheralJoystick::GetAppearance(const kodi::addon::Joystick& joystick, std::string& controllerId)
+{
+  if (!CStorageManager::Get().GetAppearance(joystick, controllerId))
+    controllerId.clear();
+
+  return PERIPHERAL_NO_ERROR;
+}
+
+PERIPHERAL_ERROR CPeripheralJoystick::SetAppearance(const kodi::addon::Joystick& joystick, const std::string& controllerId)
+{
+  if (!CStorageManager::Get().SetAppearance(joystick, controllerId))
+    return PERIPHERAL_ERROR_FAILED;
+
+  return PERIPHERAL_NO_ERROR;
+}
+
 PERIPHERAL_ERROR CPeripheralJoystick::GetFeatures(const kodi::addon::Joystick& joystick,
                                                   const std::string& controller_id,
                                                   std::vector<kodi::addon::JoystickFeature>& features)

@@ -15,13 +15,15 @@ using namespace JOYSTICK;
 
 void CDeviceConfiguration::Reset(void)
 {
+  m_appearance.clear();
   m_axes.clear();
   m_buttons.clear();
 }
 
 bool CDeviceConfiguration::IsEmpty() const
 {
-  return m_axes.empty() &&
+  return m_appearance.empty() &&
+         m_axes.empty() &&
          m_buttons.empty();
 }
 

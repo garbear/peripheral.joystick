@@ -37,6 +37,8 @@ namespace JOYSTICK
     bool AddResource(CButtonMap* resource);
     void RemoveResource(const std::string& strPath);
 
+    bool GetAppearance(const CDevice& deviceInfo, std::string& controllerId) const;
+    bool SetAppearance(const CDevice& deviceInfo, const std::string& controllerId);
     bool GetIgnoredPrimitives(const CDevice& deviceInfo, PrimitiveVector& primitives) const;
     void SetIgnoredPrimitives(const CDevice& deviceInfo, const PrimitiveVector& primitives);
 
@@ -67,6 +69,8 @@ namespace JOYSTICK
     virtual ~CJustABunchOfFiles(void);
 
     // implementation of IDatabase
+    virtual bool GetAppearance(const kodi::addon::Joystick& driverInfo, std::string& controllerId) override;
+    virtual bool SetAppearance(const kodi::addon::Joystick& driverInfo, const std::string& controllerId) override;
     virtual const ButtonMap& GetButtonMap(const kodi::addon::Joystick& driverInfo) override;
     virtual bool MapFeatures(const kodi::addon::Joystick& driverInfo,
                              const std::string& controllerId,
