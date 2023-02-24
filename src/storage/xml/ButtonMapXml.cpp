@@ -68,10 +68,7 @@ bool CButtonMapXml::Load(void)
   const TiXmlElement* pController = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_CONTROLLER);
 
   if (!pController)
-  {
-    esyslog("Device \"%s\": can't find <%s> tag", m_device->Name().c_str(), BUTTONMAP_XML_ELEM_CONTROLLER);
-    return false;
-  }
+    dsyslog("Device \"%s\": can't find <%s> tag", m_device->Name().c_str(), BUTTONMAP_XML_ELEM_CONTROLLER);
 
   // For logging purposes
   unsigned int totalFeatureCount = 0;
