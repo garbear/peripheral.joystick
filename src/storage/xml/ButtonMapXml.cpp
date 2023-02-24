@@ -420,6 +420,12 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
       if (pUp || pDown || pRight || pLeft)
       {
         type = m_controllerHelper->FeatureType(controllerId, strName);
+
+        // The type may be unknown if the controller profile isn't installed.
+        // If the feature has multiple directions, 99.9% of the time it's an
+        // analog stick every time.
+        if (type == JOYSTICK_FEATURE_TYPE_UNKNOWN)
+          type = JOYSTICK_FEATURE_TYPE_ANALOG_STICK;
       }
       else
       {
