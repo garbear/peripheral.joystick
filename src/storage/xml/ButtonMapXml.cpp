@@ -68,10 +68,7 @@ bool CButtonMapXml::Load(void)
   const TiXmlElement* pController = pDevice->FirstChildElement(BUTTONMAP_XML_ELEM_CONTROLLER);
 
   if (!pController)
-  {
-    esyslog("Device \"%s\": can't find <%s> tag", m_device->Name().c_str(), BUTTONMAP_XML_ELEM_CONTROLLER);
-    return false;
-  }
+    dsyslog("Device \"%s\": can't find <%s> tag", m_device->Name().c_str(), BUTTONMAP_XML_ELEM_CONTROLLER);
 
   // For logging purposes
   unsigned int totalFeatureCount = 0;
@@ -423,6 +420,12 @@ bool CButtonMapXml::Deserialize(const TiXmlElement* pElement, FeatureVector& fea
       if (pUp || pDown || pRight || pLeft)
       {
         type = m_controllerHelper->FeatureType(controllerId, strName);
+
+        // The type may be unknown if the controller profile isn't installed.
+        // If the feature has multiple directions, 99.9% of the time it's an
+        // analog stick every time.
+        if (type == JOYSTICK_FEATURE_TYPE_UNKNOWN)
+          type = JOYSTICK_FEATURE_TYPE_ANALOG_STICK;
       }
       else
       {

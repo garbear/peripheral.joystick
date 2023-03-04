@@ -253,7 +253,7 @@ void CButtonMap::Sanitize(FeatureVector& features, const std::string& controller
 
       if (!bIsValid)
       {
-        dsyslog("%s: Removing %s from button map", controllerId.c_str(), feature.Name().c_str());
+        dsyslog("Removing %s from button map, is %s installed?", feature.Name().c_str(), controllerId.c_str());
         return true;
       }
 
