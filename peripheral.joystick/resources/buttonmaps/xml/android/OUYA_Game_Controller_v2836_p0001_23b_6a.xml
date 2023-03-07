@@ -2,6 +2,7 @@
 <buttonmap>
     <device name="OUYA Game Controller" provider="android" vid="2836" pid="0001" buttoncount="23" axiscount="6">
         <configuration>
+            <appearance id="game.controller.ouya" />
             <axis index="2" center="-1" range="2" />
             <axis index="5" center="-1" range="2" />
         </configuration>

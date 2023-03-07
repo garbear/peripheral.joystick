@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="HuiJia  USB GamePad" provider="linux" buttoncount="16" axiscount="6">
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
+    </device>
+</buttonmap>

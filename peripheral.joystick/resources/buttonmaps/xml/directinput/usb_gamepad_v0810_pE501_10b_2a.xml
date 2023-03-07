@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="usb gamepad" provider="directinput" vid="0810" pid="E501" buttoncount="10" axiscount="2">
-        <configuration />
+        <configuration>
+            <appearance id="game.controller.snes" />
+        </configuration>
         <controller id="game.controller.snes">
             <feature name="a" button="1" />
             <feature name="b" button="2" />

@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Wireless Controller" provider="linux" buttoncount="14" axiscount="8">
-        <configuration />
         <controller id="game.controller.default">
             <feature name="a" button="1" />
             <feature name="b" button="2" />
