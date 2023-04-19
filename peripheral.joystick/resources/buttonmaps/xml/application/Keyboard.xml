@@ -1,6 +1,87 @@
 <?xml version="1.0" ?>
 <buttonmap>
     <device name="Keyboard" provider="application">
+        <controller id="game.controller.amstrad.keyboard">
+            <feature name="0" key="0" />
+            <feature name="1" key="1" />
+            <feature name="2" key="2" />
+            <feature name="3" key="3" />
+            <feature name="4" key="4" />
+            <feature name="5" key="5" />
+            <feature name="6" key="6" />
+            <feature name="7" key="7" />
+            <feature name="8" key="8" />
+            <feature name="9" key="9" />
+            <feature name="a" key="a" />
+            <feature name="at" key="grave" />
+            <feature name="b" key="b" />
+            <feature name="backslash" key="backslash" />
+            <feature name="c" key="c" />
+            <feature name="capslock" key="capslock" />
+            <feature name="closebracket" key="rightbracket" />
+            <feature name="clr" key="delete" />
+            <feature name="colon" key="quote" />
+            <feature name="comma" key="comma" />
+            <feature name="control" key="leftctrl" />
+            <feature name="copy" key="leftalt" />
+            <feature name="d" key="d" />
+            <feature name="del" key="backspace" />
+            <feature name="dot" key="period" />
+            <feature name="down" key="down" />
+            <feature name="e" key="e" />
+            <feature name="esc" key="escape" />
+            <feature name="f" key="f" />
+            <feature name="f0" key="kp0" />
+            <feature name="f1" key="kp1" />
+            <feature name="f2" key="kp2" />
+            <feature name="f3" key="kp3" />
+            <feature name="f4" key="kp4" />
+            <feature name="f5" key="kp5" />
+            <feature name="f6" key="kp6" />
+            <feature name="f7" key="kp7" />
+            <feature name="f8" key="kp8" />
+            <feature name="f9" key="kp9" />
+            <feature name="fdot" key="kpperiod" />
+            <feature name="g" key="g" />
+            <feature name="gui" key="f10" />
+            <feature name="h" key="h" />
+            <feature name="hat" key="equals" />
+            <feature name="i" key="i" />
+            <feature name="intro" key="kpenter" />
+            <feature name="j" key="j" />
+            <feature name="k" key="k" />
+            <feature name="l" key="l" />
+            <feature name="left" key="left" />
+            <feature name="m" key="m" />
+            <feature name="minus" key="minus" />
+            <feature name="mousetoggle" key="insert" />
+            <feature name="n" key="n" />
+            <feature name="o" key="o" />
+            <feature name="openbracket" key="leftbracket" />
+            <feature name="p" key="p" />
+            <feature name="play" key="home" />
+            <feature name="q" key="q" />
+            <feature name="r" key="r" />
+            <feature name="return" key="enter" />
+            <feature name="rewind" key="pageup" />
+            <feature name="right" key="right" />
+            <feature name="s" key="s" />
+            <feature name="semicolon" key="semicolon" />
+            <feature name="shift" key="leftshift" />
+            <feature name="slash" key="slash" />
+            <feature name="space" key="space" />
+            <feature name="stop" key="end" />
+            <feature name="t" key="t" />
+            <feature name="tab" key="tab" />
+            <feature name="u" key="u" />
+            <feature name="up" key="up" />
+            <feature name="v" key="v" />
+            <feature name="vkbtoggle" key="f9" />
+            <feature name="w" key="w" />
+            <feature name="x" key="x" />
+            <feature name="y" key="y" />
+            <feature name="z" key="z" />
+        </controller>
         <controller id="game.controller.elektronika.bk">
             <feature name="0" key="0" />
             <feature name="1" key="1" />
