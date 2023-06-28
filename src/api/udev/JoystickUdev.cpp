@@ -217,10 +217,13 @@ bool CJoystickUdev::ScanEvents(void)
               const unsigned int axisIndex = it->second.axisIndex;
               const input_absinfo& info = it->second.axisInfo;
 
-              if (event.value >= 0)
-                SetAxisValue(axisIndex, event.value, info.maximum);
+              int middle = (info.minimum + info.maximum) / 2;
+              int length = (info.maximum - info.minimum) / 2;
+
+              if (std::abs(event.value - middle) > length / 2)
+                SetAxisValue(axisIndex, event.value - middle, length);
               else
-                SetAxisValue(axisIndex, event.value, -info.minimum);
+                SetAxisValue(axisIndex, 0, length);
             }
           }
           break;
