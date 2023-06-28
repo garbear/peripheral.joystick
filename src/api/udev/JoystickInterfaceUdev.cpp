@@ -92,8 +92,9 @@ bool CJoystickInterfaceUdev::ScanForJoysticks(JoystickVector& joysticks)
 
     if (devnode != nullptr)
     {
-      JoystickPtr joystick = JoystickPtr(new CJoystickUdev(dev, devnode));
-      joysticks.push_back(joystick);
+      std::shared_ptr<CJoystickUdev>joystick = std::make_shared<CJoystickUdev>(dev, devnode);
+      if (joystick->IsInitialized())
+        joysticks.emplace_back(std::move(joystick));
     }
 
     udev_device_unref(dev);
