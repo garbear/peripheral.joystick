@@ -303,12 +303,7 @@ bool CJoystickUdev::GetProperties()
   // Go through all possible keycodes, check if they are used, and map them to
   // button/axes/hat indices
   unsigned int buttons = 0;
-  for (unsigned int i = KEY_UP; i <= KEY_DOWN; i++)
-  {
-    if (test_bit(i, keybit))
-      m_button_bind[i] = buttons++;
-  }
-  for (unsigned int i = BTN_MISC; i < KEY_MAX; i++)
+  for (unsigned int i = 0; i < KEY_MAX; i++)
   {
     if (test_bit(i, keybit))
       m_button_bind[i] = buttons++;
