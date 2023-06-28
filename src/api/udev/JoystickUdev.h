@@ -58,6 +58,7 @@ namespace JOYSTICK
     virtual bool Initialize(void) override;
     virtual void Deinitialize(void) override;
     virtual void ProcessEvents(void) override;
+    bool isInitialized() { return m_bInitialized; }
 
   protected:
     // implementation of CJoystick

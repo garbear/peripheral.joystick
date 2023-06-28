@@ -92,8 +92,13 @@ bool CJoystickInterfaceUdev::ScanForJoysticks(JoystickVector& joysticks)
 
      if (devnode != nullptr)
      {
-       JoystickPtr joystick = JoystickPtr(new CJoystickUdev(dev, devnode));
-       joysticks.push_back(joystick);
+       CJoystickUdev *j = new CJoystickUdev(dev, devnode);
+       if(j->isInitialized()) {
+	 JoystickPtr joystick = JoystickPtr(j);
+	 joysticks.push_back(joystick);
+       } else {
+	 delete j;
+       }
      }
 
      udev_device_unref(dev);
