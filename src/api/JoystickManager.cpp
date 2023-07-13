@@ -27,7 +27,7 @@
 #if defined(HAVE_COCOA)
   #include "cocoa/JoystickInterfaceCocoa.h"
 #endif
-#if defined(HAVE_UDEV)
+#if defined(HAVE_LIBUDEV)
   #include "udev/JoystickInterfaceUdev.h"
 #endif
 
@@ -112,7 +112,7 @@ const std::vector<EJoystickInterface>& CJoystickManager::GetSupportedInterfaces(
 #if defined(HAVE_LINUX_JOYSTICK)
     supportedInterfaces.push_back(EJoystickInterface::LINUX);
 #endif
-#if defined(HAVE_UDEV)
+#if defined(HAVE_LIBUDEV)
     supportedInterfaces.push_back(EJoystickInterface::UDEV);
 #endif
 
@@ -141,7 +141,7 @@ IJoystickInterface* CJoystickManager::CreateInterface(EJoystickInterface iface)
 #if defined(HAVE_SDL_GAMEPAD)
   case EJoystickInterface::SDL: return new CJoystickInterfaceSDL;
 #endif
-#if defined(HAVE_UDEV)
+#if defined(HAVE_LIBUDEV)
   case EJoystickInterface::UDEV: return new CJoystickInterfaceUdev;
 #endif
 #if defined(HAVE_XINPUT)

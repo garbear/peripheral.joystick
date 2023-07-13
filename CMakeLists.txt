@@ -200,13 +200,13 @@ endif()
 # --- udev ---------------------------------------------------------------------
 
 if(CORE_SYSTEM_NAME STREQUAL linux)
-  find_package(udev REQUIRED)
+  find_package(UDEV REQUIRED)
 endif()
 
 if(UDEV_FOUND)
   include_directories(${UDEV_INCLUDE_DIRS})
 
-  add_definitions(-DHAVE_UDEV)
+  add_definitions(-DHAVE_LIBUDEV)
 
   list(APPEND JOYSTICK_SOURCES src/api/udev/JoystickInterfaceUdev.cpp
                                src/api/udev/JoystickUdev.cpp)
