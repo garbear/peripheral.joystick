@@ -5,6 +5,8 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include(CheckIncludeFiles)
 
+find_package(PkgConfig)
+
 # --- Add-on Dependencies ------------------------------------------------------
 
 find_package(Kodi REQUIRED)
