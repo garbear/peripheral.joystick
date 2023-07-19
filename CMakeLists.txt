@@ -206,7 +206,7 @@ endif()
 if(UDEV_FOUND)
   include_directories(${UDEV_INCLUDE_DIRS})
 
-  add_definitions(-DHAVE_LIBUDEV)
+  add_definitions(${UDEV_DEFINITIONS})
 
   list(APPEND JOYSTICK_SOURCES src/api/udev/JoystickInterfaceUdev.cpp
                                src/api/udev/JoystickUdev.cpp)
