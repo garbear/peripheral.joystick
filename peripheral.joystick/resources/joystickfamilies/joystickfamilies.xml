@@ -78,7 +78,12 @@
 		<joystick>Hori SOULCALIBUR V Stick</joystick>
 		<joystick>Thrustmaster, Inc. GPX Controller</joystick>
 		<joystick>Thrustmaster Ferrari 458 Racing Wheel</joystick>
-		<joystick>Microsoft X-Box One pad</joystick>  
+		<joystick>Microsoft X-Box One pad</joystick>
+		<joystick>Microsoft Xbox Series S|X Controller</joystick>
+		<joystick>Microsoft X-Box One Elite pad</joystick>
+		<joystick>Microsoft X-Box One Elite 2 pad</joystick>
+		<joystick>Xbox One Wireless Controller</joystick>
+		<joystick>Xbox Elite Wireless Controller</joystick>
 	</joystickfamily>
 	<joystickfamily name="Microsoft Xbox 360 Controller (Windows)">
 		<joystick>Afterglow Gamepad for Xbox 360 (Controller)</joystick>
