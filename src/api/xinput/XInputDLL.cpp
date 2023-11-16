@@ -113,12 +113,12 @@ void CXInputDLL::Unload(void)
 
 bool CXInputDLL::HasGuideButton(void) const
 {
-  return m_strVersion == "1.3" || m_strVersion == "1.4";
+  return m_strVersion == "1.3";
 }
 
 bool CXInputDLL::SupportsPowerOff(void) const
 {
-  return m_strVersion == "1.3" || m_strVersion == "1.4";
+  return m_strVersion == "1.3";
 }
 
 bool CXInputDLL::GetState(unsigned int controllerId, XINPUT_STATE& state)
