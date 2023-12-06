@@ -454,11 +454,9 @@
             <feature name="circle" button="1" />
             <feature name="cross" button="0" />
             <feature name="down" axis="+7" />
-            <feature name="l3" button="9" />
             <feature name="left" axis="-6" />
             <feature name="leftbumper" button="4" />
             <feature name="lefttrigger" axis="+2" />
-            <feature name="r3" button="10" />
             <feature name="right" axis="+6" />
             <feature name="rightbumper" button="5" />
             <feature name="righttrigger" axis="+5" />
