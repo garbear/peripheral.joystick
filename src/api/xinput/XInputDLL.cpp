@@ -113,11 +113,21 @@ void CXInputDLL::Unload(void)
 
 bool CXInputDLL::HasGuideButton(void) const
 {
+#if defined(TARGET_WINDOWS_DESKTOP)
+  if (m_strVersion == "1.4")
+    return true;
+#endif
+
   return m_strVersion == "1.3";
 }
 
 bool CXInputDLL::SupportsPowerOff(void) const
 {
+#if defined(TARGET_WINDOWS_DESKTOP)
+  if (m_strVersion == "1.4")
+    return true;
+#endif
+
   return m_strVersion == "1.3";
 }
 
