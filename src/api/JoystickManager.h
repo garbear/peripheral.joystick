@@ -13,6 +13,7 @@
 
 #include <kodi/addon-instance/peripheral/PeripheralUtils.h>
 
+#include <map>
 #include <mutex>
 #include <set>
 #include <vector>
@@ -150,6 +151,7 @@ namespace JOYSTICK
     std::set<IJoystickInterface*>    m_enabledInterfaces;
     JoystickVector                   m_joysticks;
     unsigned int                     m_nextJoystickIndex;
+    std::map<unsigned int, kodi::addon::Joystick> m_expiredJoysticks;
     bool                             m_bChanged;
     mutable std::recursive_mutex m_changedMutex;
     mutable std::recursive_mutex m_interfacesMutex;
