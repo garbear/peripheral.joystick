@@ -37,6 +37,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <utility>
 
 using namespace JOYSTICK;
 
@@ -281,7 +282,14 @@ bool CJoystickManager::PerformJoystickScan(JoystickVector& joysticks)
   for (int i = (int)m_joysticks.size() - 1; i >= 0; i--)
   {
     if (std::find_if(scanResults.begin(), scanResults.end(), ScanResultEqual(m_joysticks.at(i))) == scanResults.end())
+    {
+      // Record index in case joystick is later reconnected
+      const CJoystick& joystick = *m_joysticks.at(i);
+      m_expiredJoysticks.emplace(std::make_pair(joystick.Index(), kodi::addon::Joystick{joystick}));
+
+      // Unregister joystick
       m_joysticks.erase(m_joysticks.begin() + i);
+    }
   }
 
   // Register new joysticks
@@ -291,7 +299,22 @@ bool CJoystickManager::PerformJoystickScan(JoystickVector& joysticks)
     {
       if ((*itJoystick)->Initialize())
       {
-        (*itJoystick)->SetIndex(m_nextJoystickIndex++);
+        // Check to see if joystick previously had an index assigned
+        bool isExpired = false;
+        for (auto it : m_expiredJoysticks)
+        {
+          const kodi::addon::Joystick& expiredJoystick = it.second;
+          if (expiredJoystick == **itJoystick)
+          {
+            isExpired = true;
+            (*itJoystick)->SetIndex(it.first);
+            m_expiredJoysticks.erase(it.first);
+            break;
+          }
+        }
+
+        if (!isExpired)
+          (*itJoystick)->SetIndex(m_nextJoystickIndex++);
 
         isyslog("Initialized joystick %u: \"%s\", axes: %u, hats: %u, buttons: %u",
                 (*itJoystick)->Index(), (*itJoystick)->Name().c_str(),
