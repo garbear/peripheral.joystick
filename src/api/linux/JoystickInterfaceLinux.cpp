@@ -17,7 +17,6 @@
 #include <linux/input.h>
 #include <linux/joystick.h>
 #include <stdlib.h>
-#include <string.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -87,13 +86,10 @@ bool CJoystickInterfaceLinux::ScanForJoysticks(JoystickVector& joysticks)
         continue;
       }
 
-      unsigned int index = (unsigned int)std::max(strtol(pDirent->d_name + strlen("js"), NULL, 10), 0L);
-
       JoystickPtr joystick = JoystickPtr(new CJoystickLinux(fd, filename));
       joystick->SetName(name);
       joystick->SetButtonCount(buttons);
       joystick->SetAxisCount(axes);
-      joystick->SetRequestedPort(index);
       joysticks.push_back(joystick);
     }
   }
