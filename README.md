@@ -19,8 +19,9 @@ The version fetched by Kodi's build system is defined by a text file included wi
 First, make sure Kodi's add-on build system is installed somewhere. You can perform a system install (to `/usr/local`) or a local install (I prefer `$HOME/kodi`). Specify this when you build Kodi:
 
 ```shell
-./bootstrap
-./configure --prefix=$HOME/kodi
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/kodi ..
 make
 make install
 ```
