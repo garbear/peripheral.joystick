@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<buttonmap>
-    <device name="Lite-On Technology Corp. USB Multimedia Keyboard" provider="android" vid="04CA" pid="0027" buttoncount="23">
-        <configuration>
-            <appearance id="game.controller.keyboard" />
-        </configuration>
-    </device>
-</buttonmap>
