@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<buttonmap>
+    <device name="NVIDIA Corporation NVIDIA Controller v01.04" provider="android" vid="0955" pid="7214" buttoncount="18" axiscount="10">
+        <configuration>
+            <appearance id="game.controller.default" />
+        </configuration>
+        <controller id="game.controller.default">
+            <feature name="a" button="2" />
+            <feature name="b" button="3" />
+            <feature name="back" button="1" />
+            <feature name="down" axis="+9" />
+            <feature name="guide" button="10" />
+            <feature name="left" axis="-8" />
+            <feature name="leftbumper" button="6" />
+            <feature name="leftstick">
+                <up axis="-1" />
+                <down axis="+1" />
+                <right axis="+0" />
+                <left axis="-0" />
+            </feature>
+            <feature name="leftthumb" button="8" />
+            <feature name="lefttrigger" axis="+3" />
+            <feature name="right" axis="+8" />
+            <feature name="rightbumper" button="7" />
+            <feature name="rightstick">
+                <up axis="-5" />
+                <down axis="+5" />
+                <right axis="+2" />
+                <left axis="-2" />
+            </feature>
+            <feature name="rightthumb" button="9" />
+            <feature name="righttrigger" axis="+4" />
+            <feature name="up" axis="-9" />
+            <feature name="x" button="4" />
+            <feature name="y" button="5" />
+        </controller>
+    </device>
+</buttonmap>
