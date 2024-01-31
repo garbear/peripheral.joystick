@@ -9,6 +9,7 @@
             <feature name="b" button="1" />
             <feature name="back" button="9" />
             <feature name="down" axis="+7" />
+            <feature name="guide" button="10" />
             <feature name="left" axis="-6" />
             <feature name="leftbumper" button="4" />
             <feature name="leftstick">
