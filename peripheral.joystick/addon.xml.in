@@ -21,7 +21,7 @@
     <summary lang="da_DK">Kodi Joystick Bibliotek</summary>
     <summary lang="de_DE">Joystick-Bibliothek für Kodi</summary>
     <summary lang="en_GB">Kodi Joystick Library</summary>
-    <summary lang="es_ES">Librería Kodi Joystick</summary>
+    <summary lang="es_ES">Biblioteca de Joysticks Kodi</summary>
     <summary lang="es_MX">Biblioteca de Joysticks de Kodi</summary>
     <summary lang="fi_FI">Kodin peliohjainkirjasto</summary>
     <summary lang="fr_FR">Bibliothèque de joystick Kodi</summary>
@@ -42,7 +42,7 @@
     <description lang="da_DK">Dette bibliotek indeholder joystick-drivere og knapgrupperinger. Flere joystick-API&apos;er understøttes, herunder DirectX, XInput, SDL og Linux Joystick API.</description>
     <description lang="de_DE">Diese Bibliothek enthält Joysticktreiber und Schaltflächenzuordnungen. Es werden mehrere Joystick-APIs unterstützt, darunter DirectX, XInput, SDL und die Linux-Joystick-API.</description>
     <description lang="en_GB">This library provides joystick drivers and button maps. Multiple joystick APIs are supported, including DirectX, XInput, SDL and the Linux Joystick API.</description>
-    <description lang="es_ES">Esta librería otorga drivers de joystick y mapeo de botones. Soporta múltiples APIs de joystick, incluyendo DirectX, XInput, SDL y la API de Joystick de Linux.</description>
+    <description lang="es_ES">Esta biblioteca otorga drivers de joystick y mapeo de botones. Soporta múltiples APIs de joystick, incluyendo DirectX, XInput, SDL y la API de Joystick de Linux.</description>
     <description lang="es_MX">Esta biblioteca provee controladores de joysticks y mapas de botones. Múltiples APIs de joystick están soportadas, incluyendo DirectX, XInput, SDL y la Linux Joystick API.</description>
     <description lang="fi_FI">Tämä kirjasto sisältää peliohjaimien ajureita ja painikemäärtiyksiä. Useita ohjainrajapintoja tuetaan, kuten mm. DirectX, XInput, SDL ja Linux Joystick API.</description>
     <description lang="fr_FR">Cette bibliothèque fournit des pilotes de joystick et les maps de boutons. Plusieurs API de joystick sont prises en charge, notamment DirectX, XInput, SDL et l’API Linux Joystick.</description>
