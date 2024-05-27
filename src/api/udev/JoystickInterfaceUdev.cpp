@@ -86,17 +86,17 @@ bool CJoystickInterfaceUdev::ScanForJoysticks(JoystickVector& joysticks)
   struct udev_list_entry* devs = udev_enumerate_get_list_entry(enumerate);
   for (struct udev_list_entry* item = devs; item != nullptr; item = udev_list_entry_get_next(item))
   {
-     const char*         name = udev_list_entry_get_name(item);
-     struct udev_device* dev = udev_device_new_from_syspath(m_udev, name);
-     const char*         devnode = udev_device_get_devnode(dev);
+    const char* name = udev_list_entry_get_name(item);
+    struct udev_device* dev = udev_device_new_from_syspath(m_udev, name);
+    const char*  devnode = udev_device_get_devnode(dev);
 
-     if (devnode != nullptr)
-     {
-       JoystickPtr joystick = JoystickPtr(new CJoystickUdev(dev, devnode));
-       joysticks.push_back(joystick);
-     }
+    if (devnode != nullptr)
+    {
+      JoystickPtr joystick = JoystickPtr(new CJoystickUdev(dev, devnode));
+      joysticks.push_back(joystick);
+    }
 
-     udev_device_unref(dev);
+    udev_device_unref(dev);
   }
 
   udev_enumerate_unref(enumerate);
