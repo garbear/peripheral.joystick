@@ -2,6 +2,7 @@
 <buttonmap>
     <device name="Logitech Gamepad F310" provider="linux" buttoncount="11" axiscount="8">
         <configuration>
+            <appearance id="game.controller.default" />
             <axis index="2" center="-1" range="2" />
             <axis index="5" center="-1" range="2" />
         </configuration>
@@ -10,6 +11,7 @@
             <feature name="b" button="1" />
             <feature name="back" button="6" />
             <feature name="down" axis="+7" />
+            <feature name="guide" button="8" />
             <feature name="left" axis="-6" />
             <feature name="leftbumper" button="4" />
             <feature name="leftstick">
