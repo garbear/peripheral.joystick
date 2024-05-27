@@ -9,6 +9,7 @@
 #include "JoystickInterfaceUdev.h"
 #include "JoystickUdev.h"
 #include "api/JoystickTypes.h"
+#include "log/Log.h"
 
 #include <libudev.h>
 #include <utility>
@@ -41,14 +42,21 @@ bool CJoystickInterfaceUdev::Initialize()
 {
   m_udev = udev_new();
   if (!m_udev)
+  {
+    esyslog("Failed to initialize udev");
     return false;
+  }
 
   m_udev_mon = udev_monitor_new_from_netlink(m_udev, "udev");
-  if (m_udev_mon)
+  if (!m_udev_mon)
   {
-     udev_monitor_filter_add_match_subsystem_devtype(m_udev_mon, "input", nullptr);
-     udev_monitor_enable_receiving(m_udev_mon);
+    esyslog("Failed to create udev monitor");
+    udev_unref(m_udev);
+    return false;
   }
+
+  udev_monitor_filter_add_match_subsystem_devtype(m_udev_mon, "input", nullptr);
+  udev_monitor_enable_receiving(m_udev_mon);
 
   return true;
 }
