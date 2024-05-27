@@ -286,11 +286,9 @@ bool CJoystickUdev::GetProperties()
   {
     std::sprintf(val, "%x", id[ID_VENDOR]);
     SetVendorID(strtol(val, NULL, 16));
-    dsyslog("[udev] Joystick information vendorid=%s for %s", val, m_path.c_str());
 
     std::sprintf(val, "%x", id[ID_PRODUCT]);
     SetProductID(strtol(val, NULL, 16));
-    dsyslog("[udev] Joystick information productid=%s for %s", val, m_path.c_str());
   }
 
   struct stat st;
