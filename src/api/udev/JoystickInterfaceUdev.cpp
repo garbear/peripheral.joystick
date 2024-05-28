@@ -9,6 +9,7 @@
 #include "JoystickInterfaceUdev.h"
 #include "JoystickUdev.h"
 #include "api/JoystickTypes.h"
+#include "log/Log.h"
 
 #include <libudev.h>
 #include <utility>
@@ -41,14 +42,21 @@ bool CJoystickInterfaceUdev::Initialize()
 {
   m_udev = udev_new();
   if (!m_udev)
+  {
+    esyslog("Failed to initialize udev");
     return false;
+  }
 
   m_udev_mon = udev_monitor_new_from_netlink(m_udev, "udev");
-  if (m_udev_mon)
+  if (!m_udev_mon)
   {
-     udev_monitor_filter_add_match_subsystem_devtype(m_udev_mon, "input", nullptr);
-     udev_monitor_enable_receiving(m_udev_mon);
+    esyslog("Failed to create udev monitor");
+    udev_unref(m_udev);
+    return false;
   }
+
+  udev_monitor_filter_add_match_subsystem_devtype(m_udev_mon, "input", nullptr);
+  udev_monitor_enable_receiving(m_udev_mon);
 
   return true;
 }
@@ -86,17 +94,18 @@ bool CJoystickInterfaceUdev::ScanForJoysticks(JoystickVector& joysticks)
   struct udev_list_entry* devs = udev_enumerate_get_list_entry(enumerate);
   for (struct udev_list_entry* item = devs; item != nullptr; item = udev_list_entry_get_next(item))
   {
-     const char*         name = udev_list_entry_get_name(item);
-     struct udev_device* dev = udev_device_new_from_syspath(m_udev, name);
-     const char*         devnode = udev_device_get_devnode(dev);
+    const char* name = udev_list_entry_get_name(item);
+    struct udev_device* dev = udev_device_new_from_syspath(m_udev, name);
+    const char*  devnode = udev_device_get_devnode(dev);
 
-     if (devnode != nullptr)
-     {
-       JoystickPtr joystick = JoystickPtr(new CJoystickUdev(dev, devnode));
-       joysticks.push_back(joystick);
-     }
+    if (devnode != nullptr)
+    {
+      std::shared_ptr<CJoystickUdev>joystick = std::make_shared<CJoystickUdev>(dev, devnode);
+      if (joystick->IsInitialized())
+        joysticks.emplace_back(std::move(joystick));
+    }
 
-     udev_device_unref(dev);
+    udev_device_unref(dev);
   }
 
   udev_enumerate_unref(enumerate);

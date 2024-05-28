@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <buttonmap>
-    <device name="Logitech Gamepad F310" provider="udev" vid="046D" pid="C21D" buttoncount="11" axiscount="8">
+    <device name="Microsoft X-Box 360 pad 0" provider="udev" vid="28DE" pid="11FF" buttoncount="11" axiscount="8">
         <configuration>
             <appearance id="game.controller.default" />
             <axis index="2" center="-1" range="2" />
@@ -11,7 +11,6 @@
             <feature name="b" button="1" />
             <feature name="back" button="6" />
             <feature name="down" axis="+7" />
-            <feature name="guide" button="8" />
             <feature name="left" axis="-6" />
             <feature name="leftbumper" button="4" />
             <feature name="leftstick">

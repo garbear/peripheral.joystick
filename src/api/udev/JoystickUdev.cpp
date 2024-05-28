@@ -11,10 +11,12 @@
 #include "log/Log.h"
 
 #include <algorithm>
+#include <cstdio>
 #include <errno.h>
 #include <fcntl.h>
 #include <libudev.h>
 #include <limits.h>
+#include <linux/input.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
@@ -217,10 +219,13 @@ bool CJoystickUdev::ScanEvents(void)
               const unsigned int axisIndex = it->second.axisIndex;
               const input_absinfo& info = it->second.axisInfo;
 
-              if (event.value >= 0)
-                SetAxisValue(axisIndex, event.value, info.maximum);
+              int middle = (info.minimum + info.maximum) / 2;
+              int length = (info.maximum - info.minimum) / 2;
+
+              if (std::abs(event.value - middle) > length / 2)
+                SetAxisValue(axisIndex, event.value - middle, length);
               else
-                SetAxisValue(axisIndex, event.value, -info.minimum);
+                SetAxisValue(axisIndex, 0, length);
             }
           }
           break;
@@ -275,15 +280,16 @@ bool CJoystickUdev::GetProperties()
   }
   SetName(name);
 
-  // Don't worry about unref'ing the parent
-  struct udev_device* parent = udev_device_get_parent_with_subsystem_devtype(m_dev, "usb", "usb_device");
+  unsigned short id[4] = {};
+  char val[16] = {};
+  if (ioctl(m_fd, EVIOCGID, id) == 0)
+  {
+    std::sprintf(val, "%x", id[ID_VENDOR]);
+    SetVendorID(strtol(val, NULL, 16));
 
-  const char* buf;
-  if ((buf = udev_device_get_sysattr_value(parent, "idVendor")) != nullptr)
-    SetVendorID(strtol(buf, NULL, 16));
-
-  if ((buf = udev_device_get_sysattr_value(parent, "idProduct")) != nullptr)
-    SetProductID(strtol(buf, NULL, 16));
+    std::sprintf(val, "%x", id[ID_PRODUCT]);
+    SetProductID(strtol(val, NULL, 16));
+  }
 
   struct stat st;
   if (fstat(m_fd, &st) < 0)
@@ -303,12 +309,7 @@ bool CJoystickUdev::GetProperties()
   // Go through all possible keycodes, check if they are used, and map them to
   // button/axes/hat indices
   unsigned int buttons = 0;
-  for (unsigned int i = KEY_UP; i <= KEY_DOWN; i++)
-  {
-    if (test_bit(i, keybit))
-      m_button_bind[i] = buttons++;
-  }
-  for (unsigned int i = BTN_MISC; i < KEY_MAX; i++)
+  for (unsigned int i = 0; i < KEY_MAX; i++)
   {
     if (test_bit(i, keybit))
       m_button_bind[i] = buttons++;
