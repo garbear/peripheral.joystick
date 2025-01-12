@@ -103,32 +103,29 @@ bool CDeviceXml::Deserialize(const TiXmlElement* pElement, CDevice& record)
 
 bool CDeviceXml::SerializeConfig(const CDeviceConfiguration& config, TiXmlElement* pElement)
 {
-  if (!config.IsEmpty())
+  TiXmlElement configurationElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
+  TiXmlNode* configurationNode = pElement->InsertEndChild(configurationElement);
+  if (configurationNode == nullptr)
+    return false;
+
+  TiXmlElement* configurationElem = configurationNode->ToElement();
+  if (configurationElem == nullptr)
+    return false;
+
+  const std::string controllerId = config.GetAppearance();
+  if (!SerializeAppearance(controllerId, configurationElem))
+    return false;
+
+  for (const auto& axis : config.Axes())
   {
-    TiXmlElement configurationElement(BUTTONMAP_XML_ELEM_CONFIGURATION);
-    TiXmlNode* configurationNode = pElement->InsertEndChild(configurationElement);
-    if (configurationNode == nullptr)
+    if (!SerializeAxis(axis.first, axis.second, configurationElem))
       return false;
+  }
 
-    TiXmlElement* configurationElem = configurationNode->ToElement();
-    if (configurationElem == nullptr)
+  for (const auto& button : config.Buttons())
+  {
+    if (!SerializeButton(button.first, button.second, configurationElem))
       return false;
-
-    const std::string controllerId = config.GetAppearance();
-    if (!SerializeAppearance(controllerId, configurationElem))
-      return false;
-
-    for (const auto& axis : config.Axes())
-    {
-      if (!SerializeAxis(axis.first, axis.second, configurationElem))
-        return false;
-    }
-
-    for (const auto& button : config.Buttons())
-    {
-      if (!SerializeButton(button.first, button.second, configurationElem))
-        return false;
-    }
   }
 
   return true;
