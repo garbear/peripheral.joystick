@@ -1,1 +1,1 @@
-buildPlugin(version: "Omega", deploy: ['ubuntu-ppa'])
+buildPlugin(version: "Omega")
