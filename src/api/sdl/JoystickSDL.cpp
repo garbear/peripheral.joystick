@@ -71,6 +71,42 @@ void CJoystickSDL::Deinitialize(void)
   CJoystick::Deinitialize();
 }
 
+bool CJoystickSDL::GetBattery(JOYSTICK_BATTERY& battery)
+{
+  if (m_pController == nullptr)
+    return false;
+
+  SDL_Joystick* joystick = SDL_GameControllerGetJoystick(m_pController);
+  if (joystick == nullptr)
+    return false;
+
+  switch (SDL_JoystickCurrentPowerLevel(joystick))
+  {
+    case SDL_JOYSTICK_POWER_WIRED:
+      battery.state = JOYSTICK_BATTERY_STATE_WIRED;
+      battery.level = -1;
+      return true;
+    case SDL_JOYSTICK_POWER_EMPTY:
+      battery.level = 5;
+      break;
+    case SDL_JOYSTICK_POWER_LOW:
+      battery.level = 20;
+      break;
+    case SDL_JOYSTICK_POWER_MEDIUM:
+      battery.level = 70;
+      break;
+    case SDL_JOYSTICK_POWER_FULL:
+    case SDL_JOYSTICK_POWER_MAX:
+      battery.level = 100;
+      break;
+    default:
+      return false;
+  }
+
+  battery.state = JOYSTICK_BATTERY_STATE_DISCHARGING;
+  return true;
+}
+
 bool CJoystickSDL::ScanEvents(void)
 {
   if (m_pController == nullptr)

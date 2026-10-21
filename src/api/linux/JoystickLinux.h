@@ -24,6 +24,7 @@ namespace JOYSTICK
     // implementation of CJoystick
     virtual void Deinitialize(void) override;
     virtual bool Equals(const CJoystick* rhs) const override;
+    virtual bool GetBattery(JOYSTICK_BATTERY& battery) override;
 
   protected:
     virtual bool ScanEvents(void) override;

@@ -11,6 +11,7 @@
 #include "api/JoystickTypes.h"
 #include "log/Log.h"
 #include "utils/CommonMacros.h"
+#include "utils/linux/PowerSupply.h"
 
 #include <dirent.h>
 #include <errno.h>
@@ -52,6 +53,16 @@ bool CJoystickLinux::Equals(const CJoystick* rhs) const
     return false;
 
   return m_strFilename == rhsLinux->m_strFilename;
+}
+
+bool CJoystickLinux::GetBattery(JOYSTICK_BATTERY& battery)
+{
+  // /dev/input/js0 -> /sys/class/input/js0
+  const size_t lastSlash = m_strFilename.find_last_of('/');
+  const std::string nodeName =
+      lastSlash == std::string::npos ? m_strFilename : m_strFilename.substr(lastSlash + 1);
+
+  return CPowerSupply::GetBattery("/sys/class/input/" + nodeName, battery);
 }
 
 bool CJoystickLinux::ScanEvents(void)

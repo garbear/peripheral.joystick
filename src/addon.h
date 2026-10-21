@@ -49,6 +49,7 @@ public:
   void RevertButtonMap(const kodi::addon::Joystick& joystick) override;
   void ResetButtonMap(const kodi::addon::Joystick& joystick, const std::string& controller_id) override;
   void PowerOffJoystick(unsigned int index) override;
+  PERIPHERAL_ERROR GetJoystickBattery(unsigned int index, JOYSTICK_BATTERY& battery) override;
 
 private:
   JOYSTICK::CPeripheralScanner* m_scanner;

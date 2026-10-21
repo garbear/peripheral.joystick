@@ -58,6 +58,7 @@ namespace JOYSTICK
     virtual bool Initialize(void) override;
     virtual void Deinitialize(void) override;
     virtual void ProcessEvents(void) override;
+    virtual bool GetBattery(JOYSTICK_BATTERY& battery) override;
 
     // udev API
     bool IsInitialized() const { return m_bInitialized; }
@@ -84,6 +85,7 @@ namespace JOYSTICK
     // Udev properties
     udev_device* m_dev;
     std::string  m_path;
+    std::string  m_syspath;
     dev_t        m_deviceNumber;
     int          m_fd;
     bool         m_bInitialized;

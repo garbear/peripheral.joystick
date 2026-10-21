@@ -9,6 +9,7 @@
 #include "JoystickUdev.h"
 #include "api/JoystickTypes.h"
 #include "log/Log.h"
+#include "utils/linux/PowerSupply.h"
 
 #include <algorithm>
 #include <cstdio>
@@ -46,6 +47,10 @@ CJoystickUdev::CJoystickUdev(udev_device* dev, const char* path)
    m_motors(),
    m_previousMotors()
 {
+  // The device is released once the joystick is constructed
+  if (const char* syspath = udev_device_get_syspath(dev))
+    m_syspath = syspath;
+
   // Must initialize in the constructor to fill out joystick properties
   Initialize();
 }
@@ -190,6 +195,14 @@ void CJoystickUdev::UpdateMotorState(const std::array<uint16_t, MOTOR_COUNT>& mo
   {
     m_effect = e.id;
   }
+}
+
+bool CJoystickUdev::GetBattery(JOYSTICK_BATTERY& battery)
+{
+  if (m_syspath.empty())
+    return false;
+
+  return CPowerSupply::GetBattery(m_syspath, battery);
 }
 
 bool CJoystickUdev::ScanEvents(void)

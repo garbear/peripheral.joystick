@@ -30,6 +30,7 @@ namespace JOYSTICK
     virtual bool Equals(const CJoystick* rhs) const override;
 
     virtual void PowerOff() override;
+    virtual bool GetBattery(JOYSTICK_BATTERY& battery) override;
 
   protected:
     virtual bool ScanEvents(void) override;

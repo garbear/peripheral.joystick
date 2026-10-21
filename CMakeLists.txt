@@ -112,6 +112,11 @@ if(CORE_SYSTEM_NAME MATCHES windows)
   list(APPEND JOYSTICK_HEADERS src/utils/windows/CharsetConverter.h)
 endif()
 
+if(CORE_SYSTEM_NAME STREQUAL linux)
+  list(APPEND JOYSTICK_SOURCES src/utils/linux/PowerSupply.cpp)
+  list(APPEND JOYSTICK_HEADERS src/utils/linux/PowerSupply.h)
+endif()
+
 check_include_files("syslog.h" HAVE_SYSLOG)
 
 if(HAVE_SYSLOG)
